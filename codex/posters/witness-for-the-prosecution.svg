@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200" fill="none">
+  <defs><linearGradient id="g" x1="40" y1="0" x2="760" y2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="#B3936C"/><stop offset=".48" stop-color="#55412F"/><stop offset="1" stop-color="#17110D"/></linearGradient></defs>
+  <rect width="800" height="1200" fill="url(#g)"/><path d="M217 740L400 270L583 740H217Z" stroke="#F7E9D2" stroke-opacity=".17"/>
+  <path d="M400 270V780M217 740H583" stroke="#F7E9D2" stroke-opacity=".12"/>
+  <circle cx="400" cy="548" r="82" fill="#F7E9D2" fill-opacity=".08"/>
+  <text x="64" y="80" fill="#FFF4E5" fill-opacity=".64" font-family="Arial" font-size="15" letter-spacing="4">PLACEHOLDER POSTER</text>
+  <text x="64" y="1015" fill="#FFF6E9" font-family="Microsoft YaHei, sans-serif" font-size="72" font-weight="600">控方证人</text>
+  <text x="64" y="1080" fill="#FFF6E9" fill-opacity=".52" font-family="Arial" font-size="17" letter-spacing="3">1957 · MYSTERY</text>
+</svg>

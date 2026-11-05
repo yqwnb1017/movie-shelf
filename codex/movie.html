@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="哎哟蔚的电影收藏 · 电影详情。" />
+    <meta name="theme-color" content="#080a08" />
+    <title>电影详情 · 哎哟蔚的电影收藏</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%23080a08%22/><text x=%2232%22 y=%2243%22 text-anchor=%22middle%22 fill=%22%23b8f39a%22 font-size=%2230%22>影</text></svg>"
+    />
+    <script src="./tailwind-browser.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#080a08",
+              panel: "#10130f",
+              line: "#252b24",
+              mist: "#eef1eb",
+              muted: "#929a8e",
+              accent: "#b8f39a",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="./assets/project-page.css" />
+    <link rel="stylesheet" href="./assets/library.css" />
+    <link rel="stylesheet" href="./assets/movie-detail.css" />
+    <link rel="stylesheet" href="./assets/characters.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#movie-content">跳至电影内容</a>
+    <div class="ambient-backdrop" aria-hidden="true"></div>
+    <div class="character-layer" data-character-layer data-theme="dark" aria-hidden="true"></div>
+    <canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
+
+    <header id="detailHeader" class="detail-header fixed inset-x-0 top-0 z-40">
+      <nav class="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="电影详情页导航">
+        <a class="flex items-center gap-3" href="./index.html" aria-label="哎哟蔚的电影收藏，返回首页">
+          <span class="detail-brand">影</span>
+          <span class="hidden text-xs font-semibold uppercase tracking-[0.24em] text-mist sm:block">哎哟蔚</span>
+        </a>
+        <div class="flex items-center gap-3">
+          <a class="hidden text-[0.6rem] uppercase tracking-[0.18em] text-muted transition-colors hover:text-mist sm:block" href="./library.html">Film library</a>
+          <a class="back-link" href="./index.html">
+            <svg class="size-3.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            返回首页
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="detail-hero">
+        <div class="detail-grid" aria-hidden="true"></div>
+        <div class="detail-orbit" aria-hidden="true"></div>
+
+        <div class="relative z-10 mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <div class="reveal">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <p class="detail-kicker">Film detail / Personal collection</p>
+              <p class="text-[0.6rem] uppercase tracking-[0.2em] text-muted">Poster ambience · Live</p>
+            </div>
+            <h1 id="movieTitle" class="detail-title">电影详情</h1>
+            <p id="movieDescription" class="detail-lead">
+              这里预留电影简介位置，后续可替换为正式剧情简介与个人观影记录。
+            </p>
+            <div id="movieDetailActions" class="movie-detail-actions"></div>
+            <div class="detail-meta">
+              <div><span>类型</span><strong id="movieGenre">类型占位</strong></div>
+              <div><span>年份</span><strong id="movieYear">年份占位</strong></div>
+              <div><span>状态</span><strong>浏览器本地保存</strong></div>
+            </div>
+          </div>
+
+          <figure class="project-image detail-media reveal mt-14 sm:mt-16 lg:mt-20">
+            <div id="movieHeroPoster" class="movie-hero-poster">
+              <img id="moviePosterImage" alt="" />
+              <span id="moviePosterCode" class="movie-hero-code">Poster placeholder</span>
+              <p id="moviePosterTitle" class="movie-hero-title">电影详情</p>
+            </div>
+            <figcaption class="image-note">
+              <span>海报主色将自动用于页面背景与粒子氛围</span>
+              <span>主色不足时使用默认深色渐变兜底</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="movie-content" class="project-section">
+        <div class="mx-auto grid max-w-[1440px] gap-16 px-5 sm:px-8 lg:grid-cols-[0.34fr_0.66fr] lg:gap-24 lg:px-12">
+          <aside class="reveal">
+            <div class="lg:sticky lg:top-28">
+              <p class="section-label">Collection note</p>
+              <div class="project-facts mt-5">
+                <div class="project-fact"><span>收藏方式</span><strong>想看 / 已看过</strong></div>
+                <div class="project-fact"><span>存储位置</span><strong>当前浏览器</strong></div>
+                <div class="project-fact"><span>背景来源</span><strong>海报主色与氛围色</strong></div>
+              </div>
+              <a class="back-link mt-7" href="./library.html">← 返回片库</a>
+            </div>
+          </aside>
+
+          <div class="min-w-0">
+            <section class="reveal">
+              <p class="section-label">01 / Story</p>
+              <h2 class="section-heading">电影简介</h2>
+              <div class="mt-8 grid gap-5 sm:grid-cols-2">
+                <p class="body-copy">
+                  在这里补充正式剧情简介、导演信息与演员信息。当前内容为占位文字，可随时替换。
+                </p>
+                <p class="body-copy">
+                  在这里补充选择这部电影的原因、第一次观看的感受，或任何值得留下的观影背景。
+                </p>
+              </div>
+            </section>
+
+            <section class="reveal mt-16 border-t border-line pt-10">
+              <p class="section-label">02 / Note</p>
+              <h2 class="section-heading">观影笔记</h2>
+              <div class="movie-note mt-7">
+                这里是观影笔记占位区域。后续可以填写最喜欢的镜头、台词、声音设计，或看完之后仍然停留在脑海里的细节。
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mx-auto flex max-w-[1440px] flex-col gap-4 px-5 py-8 text-[0.62rem] uppercase tracking-[0.15em] text-white/30 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
+      <p>© <span id="currentYear">2026</span> 哎哟蔚 · Film Library</p>
+      <a class="transition-colors hover:text-white/70" href="./library.html">返回片库 ↑</a>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">收藏状态已更新</div>
+    <script src="./assets/movies.js"></script>
+    <script src="./assets/movie-detail.js"></script>
+    <script src="./assets/characters.js"></script>
+    <script src="./assets/project-page.js"></script>
+  </body>
+</html>

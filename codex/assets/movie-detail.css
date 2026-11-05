@@ -1,0 +1,167 @@
+:root {
+  --ambient-primary: 57 51 77;
+  --ambient-secondary: 22 20 28;
+  --ambient-highlight: 117 101 139;
+}
+
+body {
+  background: #080a08;
+}
+
+.ambient-backdrop {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 8%, rgb(var(--ambient-primary) / 0.3), transparent 34rem),
+    radial-gradient(circle at 86% 24%, rgb(var(--ambient-highlight) / 0.14), transparent 30rem),
+    linear-gradient(145deg, rgb(var(--ambient-secondary) / 0.74), #080a08 68%);
+  transition: background 1200ms ease;
+}
+
+.ambient-backdrop::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, transparent, rgba(8, 10, 8, 0.66) 78%, #080a08);
+}
+
+.particle-canvas {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+main,
+body > footer,
+.detail-header {
+  position: relative;
+  z-index: 2;
+}
+
+.detail-header {
+  position: fixed;
+  z-index: 40;
+}
+
+.movie-hero-poster {
+  position: relative;
+  display: flex;
+  min-height: 22rem;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  color: rgba(255, 255, 255, 0.82);
+  isolation: isolate;
+}
+
+.movie-hero-poster img {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+.movie-hero-poster::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background:
+    radial-gradient(circle at 76% 36%, rgba(255, 255, 255, 0.09), transparent 18rem),
+    linear-gradient(180deg, rgba(5, 7, 5, 0.08) 12%, rgba(5, 7, 5, 0.24) 58%, rgba(5, 7, 5, 0.7));
+}
+
+.movie-hero-code {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.movie-hero-title {
+  max-width: 11ch;
+  font-family:
+    "Arial Narrow",
+    "Avenir Next Condensed",
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.065em;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+}
+
+.movie-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.75rem;
+}
+
+.movie-detail-actions .movie-action {
+  min-width: 7rem;
+  border-color: #343c32;
+  color: #aab1a5;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.movie-detail-actions .movie-action:hover {
+  border-color: rgba(184, 243, 154, 0.38);
+  color: #eef1eb;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.movie-detail-actions .movie-action[data-action="want"].is-active {
+  border-color: rgba(184, 243, 154, 0.4);
+  color: #dfffd1;
+  background: rgba(184, 243, 154, 0.14);
+}
+
+.movie-detail-actions .movie-action[data-action="watched"].is-active {
+  border-color: rgba(210, 191, 230, 0.34);
+  color: #f4edfa;
+  background: rgba(131, 105, 157, 0.28);
+}
+
+.detail-media {
+  min-height: 22rem;
+}
+
+.movie-note {
+  padding: 1.5rem;
+  border: 1px solid var(--detail-line);
+  border-radius: 1rem;
+  color: #959d91;
+  background: rgba(255, 255, 255, 0.018);
+  font-size: 0.82rem;
+  line-height: 1.9;
+}
+
+@media (max-width: 767px) {
+  .movie-hero-poster {
+    min-height: 19rem;
+  }
+
+  .particle-canvas {
+    opacity: 0.46;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle-canvas {
+    display: none;
+  }
+}

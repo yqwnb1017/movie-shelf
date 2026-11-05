@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="zh-CN" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="哎哟蔚的电影收藏，一个简单的个人片库与观影记录。"
+    />
+    <meta name="theme-color" content="#eee9f8" />
+    <title>哎哟蔚的电影收藏</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%23241b31%22/><text x=%2232%22 y=%2243%22 text-anchor=%22middle%22 fill=%22%23b8f39a%22 font-size=%2230%22>影</text></svg>"
+    />
+    <script src="./tailwind-browser.js"></script>
+    <script src="./assets/tailwind-theme.js"></script>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="./assets/library.css" />
+    <link rel="stylesheet" href="./assets/characters.css" />
+  </head>
+
+  <body class="min-h-screen overflow-x-hidden bg-ink font-sans text-mist antialiased">
+    <a class="skip-link" href="#main-content">跳至主要内容</a>
+    <div id="cursorGlow" class="cursor-glow" aria-hidden="true"></div>
+    <div class="character-layer" data-character-layer aria-hidden="true"></div>
+
+    <header id="siteHeader" class="fixed inset-x-0 top-0 z-40 transition-all duration-300">
+      <nav class="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="主导航">
+        <a href="./index.html" class="group flex items-center gap-3" aria-label="哎哟蔚的电影收藏，返回首页">
+          <span
+            class="grid size-10 place-items-center rounded-full border border-line bg-panel text-sm font-bold text-accent transition-colors duration-300 group-hover:border-accent/40"
+          >
+            影
+          </span>
+          <span class="hidden text-xs font-semibold uppercase tracking-[0.24em] text-mist sm:block">
+            哎哟蔚
+          </span>
+        </a>
+
+        <div class="hidden items-center gap-1 rounded-full border border-line bg-white/30 p-1.5 backdrop-blur-xl md:flex">
+          <a class="nav-link is-active" href="./index.html" aria-current="page">首页</a>
+          <a class="nav-link" href="./library.html">片库</a>
+          <a class="nav-link" href="./favorites.html">我的收藏</a>
+        </div>
+
+        <a
+          class="hidden items-center gap-2 text-xs font-medium text-muted transition-colors hover:text-mist md:flex"
+          href="./favorites.html"
+        >
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-profile-count>6 部影片 · 0 部已标记</span>
+        </a>
+
+        <button
+          id="menuToggle"
+          class="relative grid size-11 place-items-center rounded-full border border-line bg-panel/80 text-mist backdrop-blur-xl md:hidden"
+          type="button"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+          aria-label="打开导航菜单"
+        >
+          <span class="menu-line menu-line-top"></span>
+          <span class="menu-line menu-line-bottom"></span>
+        </button>
+      </nav>
+
+      <div
+        id="mobileMenu"
+        class="pointer-events-none mx-4 mt-1 translate-y-[-8px] rounded-3xl border border-line bg-panel/95 p-4 opacity-0 shadow-card backdrop-blur-2xl transition-all duration-300 md:hidden"
+      >
+        <div class="grid gap-1">
+          <a class="mobile-nav-link" href="./index.html">首页 <span>01</span></a>
+          <a class="mobile-nav-link" href="./library.html">片库 <span>02</span></a>
+          <a class="mobile-nav-link" href="./favorites.html">我的收藏 <span>03</span></a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section id="home" class="relative flex min-h-screen items-center overflow-hidden pb-16 pt-28 sm:pb-20 lg:pt-24">
+        <div class="hero-grid absolute inset-0 opacity-60" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb-left" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb-right" aria-hidden="true"></div>
+
+        <div class="relative z-10 mx-auto grid w-full max-w-[1440px] items-center gap-16 px-5 sm:px-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12 lg:px-12">
+          <div class="max-w-3xl">
+            <div class="reveal flex items-center gap-3">
+              <span class="h-px w-8 bg-accent/70"></span>
+              <p class="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-accent">
+                Personal film library
+              </p>
+            </div>
+
+            <h1 class="reveal reveal-delay-1 mt-8 font-display text-[clamp(3.25rem,8vw,7.6rem)] font-semibold leading-[0.92] tracking-[-0.065em] text-mist">
+              收藏好电影，<br />
+              留住<span class="text-outline">好故事</span>。
+            </h1>
+
+            <div class="reveal reveal-delay-2 mt-9 grid max-w-2xl gap-7 sm:grid-cols-[1fr_auto] sm:items-end">
+              <p class="text-pretty text-base leading-8 text-muted sm:text-lg">
+                你好，我是哎哟蔚。这里收藏想看的电影，也记录已经看过的故事。慢慢浏览，留下一点属于自己的观影轨迹。
+              </p>
+              <p class="hidden text-right text-[0.62rem] uppercase leading-5 tracking-[0.22em] text-[#8a7d98] sm:block">
+                Film library<br />
+                Curated by me
+              </p>
+            </div>
+
+            <div class="reveal reveal-delay-3 mt-10 flex flex-wrap items-center gap-3">
+              <a class="button-primary group" href="./library.html">
+                浏览片库
+                <svg class="size-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <a class="button-secondary group" href="./favorites.html">
+                <span class="status-dot" aria-hidden="true"></span>
+                我的收藏
+              </a>
+            </div>
+
+            <div class="reveal reveal-delay-3 mt-14 grid max-w-xl grid-cols-3 border-y border-line py-6 sm:mt-20">
+              <div>
+                <p class="font-display text-3xl font-semibold tracking-[-0.04em] text-mist" data-stat-total>6</p>
+                <p class="mt-1 text-[0.65rem] uppercase tracking-[0.18em] text-muted">收录影片</p>
+              </div>
+              <div class="border-l border-line pl-5 sm:pl-8">
+                <p class="font-display text-3xl font-semibold tracking-[-0.04em] text-mist" data-stat-want>0</p>
+                <p class="mt-1 text-[0.65rem] uppercase tracking-[0.18em] text-muted">想看</p>
+              </div>
+              <div class="border-l border-line pl-5 sm:pl-8">
+                <p class="font-display text-3xl font-semibold tracking-[-0.04em] text-mist" data-stat-watched>0</p>
+                <p class="mt-1 text-[0.65rem] uppercase tracking-[0.18em] text-muted">已看过</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-2 relative mx-auto hidden w-full max-w-[540px] lg:block" aria-hidden="true">
+            <div class="hero-visual relative aspect-square">
+              <div class="orbit orbit-outer"></div>
+              <div class="orbit orbit-inner"></div>
+
+              <div class="absolute left-[9%] top-[12%] rounded-full border border-[#a58fbe]/30 bg-white/20 px-4 py-2 text-[0.6rem] uppercase tracking-[0.2em] text-[#6f5b84] backdrop-blur-md">
+                Curated / Stories
+              </div>
+
+              <div class="portrait-card absolute left-1/2 top-1/2 grid size-[53%] -translate-x-1/2 -translate-y-1/2 place-items-center overflow-hidden rounded-[2.5rem]">
+                <div class="portrait-glow"></div>
+                <div class="relative text-center">
+                  <p class="font-display text-[5.5rem] font-bold leading-none tracking-[-0.1em] text-[#0c0e0c]">影</p>
+                  <p class="mt-2 text-[0.58rem] font-semibold uppercase tracking-[0.28em] text-[#243020]">Collected in light</p>
+                </div>
+              </div>
+
+              <div class="absolute bottom-[10%] right-[1%] w-[44%] rounded-2xl border border-white/10 bg-[#111411]/90 p-4 shadow-card backdrop-blur-xl">
+                <div class="flex items-center justify-between">
+                  <span class="text-[0.55rem] uppercase tracking-[0.2em] text-white/45">Tonight</span>
+                  <span class="size-1.5 rounded-full bg-accent shadow-[0_0_12px_rgba(184,243,154,0.9)]"></span>
+                </div>
+                <p class="mt-3 text-sm font-medium text-white">今晚看什么？</p>
+                <p class="mt-1 text-[0.62rem] text-white/40">从片库里挑一部</p>
+              </div>
+
+              <div class="absolute bottom-[23%] left-[1%] rounded-full border border-line bg-[#0d0f0d]/90 p-3 backdrop-blur-lg">
+                <svg class="size-7 text-[#b8f39a]" viewBox="0 0 32 32" fill="none">
+                  <path d="M16 4v24M4 16h24M7.5 7.5l17 17m0-17-17 17" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".8" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a class="scroll-cue absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-[0.6rem] uppercase tracking-[0.25em] text-muted transition-colors hover:text-mist sm:flex" href="#featured">
+          <span class="grid size-8 place-items-center rounded-full border border-line">
+            <svg class="size-3" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 2v11m-4-4 4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          向下浏览
+        </a>
+      </section>
+
+      <section id="featured" class="relative py-24 sm:py-32 lg:py-40">
+        <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <div class="reveal flex flex-col justify-between gap-8 border-b border-line pb-8 sm:flex-row sm:items-end">
+            <div>
+              <p class="section-kicker">01 / Film shelf</p>
+              <h2 class="section-title mt-5">片库精选</h2>
+            </div>
+            <p class="max-w-md text-sm leading-7 text-muted sm:text-right">
+              先从几部最近想看的电影开始。海报与片名暂为占位内容，完整片单在片库页面。
+            </p>
+          </div>
+
+          <div class="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-x-6">
+            <article class="reveal lg:col-span-7">
+              <a href="./movie.html?movie=rear-window" class="home-film-frame group block">
+                <div class="home-film-visual aspect-[1.4/1] sm:aspect-[1.55/1]">
+                  <img class="home-film-image" src="./posters/rear-window.svg" alt="后窗 占位海报" width="800" height="1200" loading="lazy" />
+                  <span class="home-film-label">Poster placeholder / 01</span>
+                </div>
+                <div class="home-film-meta">
+                  <div>
+                    <p class="project-title">后窗</p>
+                    <p class="project-type">1954 · 悬疑</p>
+                  </div>
+                  <span class="project-arrow" aria-hidden="true">↗</span>
+                </div>
+              </a>
+            </article>
+
+            <article class="reveal reveal-delay-1 lg:col-span-5">
+              <a href="./movie.html?movie=the-lion-king" class="home-film-frame group block">
+                <div class="home-film-visual aspect-[1.4/1] sm:aspect-[1.55/1]">
+                  <img class="home-film-image" src="./posters/the-lion-king.svg" alt="狮子王 占位海报" width="800" height="1200" loading="lazy" />
+                  <span class="home-film-label">Poster placeholder / 02</span>
+                </div>
+                <div class="home-film-meta">
+                  <div>
+                    <p class="project-title">狮子王</p>
+                    <p class="project-type">1994 · 动画</p>
+                  </div>
+                  <span class="project-arrow" aria-hidden="true">↗</span>
+                </div>
+              </a>
+            </article>
+
+            <article class="reveal lg:col-span-12 lg:mt-4">
+              <a href="./movie.html?movie=witness-for-the-prosecution" class="home-film-frame group block">
+                <div class="home-film-visual aspect-[1.05/1] sm:aspect-[2.15/1]">
+                  <img class="home-film-image" src="./posters/witness-for-the-prosecution.svg" alt="控方证人 占位海报" width="800" height="1200" loading="lazy" />
+                  <span class="home-film-label">Poster placeholder / 03</span>
+                </div>
+                <div class="home-film-meta">
+                  <div>
+                    <p class="project-title">控方证人</p>
+                    <p class="project-type">1957 · 悬疑</p>
+                  </div>
+                  <span class="project-arrow" aria-hidden="true">↗</span>
+                </div>
+              </a>
+            </article>
+          </div>
+
+          <div class="reveal mt-10 flex justify-end">
+            <a class="button-secondary group" href="./library.html">
+              查看全部影片
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="relative overflow-hidden border-y border-line bg-[#e7e0f3] py-24 sm:py-32 lg:py-40">
+        <div class="about-glow" aria-hidden="true"></div>
+        <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <div class="grid gap-16 lg:grid-cols-[0.76fr_1.24fr] lg:gap-24">
+            <div class="reveal">
+              <p class="section-kicker">02 / About the shelf</p>
+              <h2 class="section-title mt-5">在光影中<br />慢慢筛选</h2>
+              <div class="mt-10 flex items-center gap-4">
+                <div class="grid size-14 place-items-center rounded-2xl border border-accent/20 bg-accent/[0.07] font-display text-xl font-semibold text-accent">
+                  影
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-mist">哎哟蔚 / Aiyowei</p>
+                  <p class="mt-1 text-xs text-muted">个人电影收藏 · 持续更新</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal reveal-delay-1">
+              <div class="daily-quote" aria-live="polite">
+                <div class="flex items-center justify-between gap-4">
+                  <p class="text-[0.65rem] uppercase tracking-[0.22em] text-muted">Daily line / 每日台词</p>
+                  <time id="dailyQuoteDate" class="text-[0.62rem] tracking-[0.08em] text-[#8a7d98]"></time>
+                </div>
+                <div id="dailyQuoteContent" class="daily-quote-content">
+                  <blockquote class="mt-6">
+                    <p id="dailyQuoteText" class="text-balance text-2xl font-medium leading-[1.65] tracking-[-0.025em] text-[#342743] sm:text-3xl lg:text-[2.15rem]">
+                      正在加载今天的台词。
+                    </p>
+                    <p
+                      id="dailyQuoteTranslation"
+                      class="mt-3 text-base leading-8 text-[#5f526d] sm:text-lg"
+                      hidden
+                    ></p>
+                    <footer class="mt-5 flex items-center gap-2 text-sm text-muted">
+                      <span class="h-px w-7 bg-[#a995bd]" aria-hidden="true"></span>
+                      <cite id="dailyQuoteMovie" class="not-italic">电影名称</cite>
+                    </footer>
+                  </blockquote>
+                </div>
+                <div class="mt-8 grid gap-6 text-sm leading-8 text-muted sm:grid-cols-2 sm:gap-10">
+                  <p>每天从台词库中选择一句，让电影在片单之外，也留下一点声音。</p>
+                  <p>台词依据本地日期切换，同一天打开页面时，总能看到同一句话。</p>
+                </div>
+              </div>
+
+              <div class="mt-12 border-t border-line pt-8">
+                <div class="grid gap-8 sm:grid-cols-[0.8fr_1.2fr]">
+                  <div>
+                    <p class="text-[0.65rem] uppercase tracking-[0.22em] text-muted">Collection mood</p>
+                    <p class="mt-3 text-sm leading-7 text-[#4c3e5b]">
+                      安静剧情 / 科幻 / 公路<br />
+                      老电影 / 夏夜 / 城市故事
+                    </p>
+                  </div>
+                  <div class="flex flex-wrap content-start gap-2">
+                    <span class="skill-chip">剧情</span>
+                    <span class="skill-chip">科幻</span>
+                    <span class="skill-chip">动画</span>
+                    <span class="skill-chip">悬疑</span>
+                    <span class="skill-chip">爱情</span>
+                    <span class="skill-chip">公路</span>
+                    <span class="skill-chip">黑白</span>
+                    <span class="skill-chip">重看</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal mt-20 grid border-t border-line pt-10 sm:grid-cols-3 sm:pt-12">
+            <div class="about-principle">
+              <span>01</span>
+              <div>
+                <h3>先被故事打动</h3>
+                <p>不追热门，只留下真正让自己产生好奇的电影。</p>
+              </div>
+            </div>
+            <div class="about-principle sm:border-l sm:border-line sm:pl-8 lg:pl-12">
+              <span>02</span>
+              <div>
+                <h3>允许再次观看</h3>
+                <p>有些电影第一次看故事，第二次才开始看见情绪。</p>
+              </div>
+            </div>
+            <div class="about-principle sm:border-l sm:border-line sm:pl-8 lg:pl-12">
+              <span>03</span>
+              <div>
+                <h3>保留当时感受</h3>
+                <p>简单标记想看与看过，让片单成为一段时间里的注脚。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="discover" class="relative py-24 sm:py-32 lg:py-40">
+        <div class="contact-halo" aria-hidden="true"></div>
+        <div class="relative z-10 mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <div class="reveal overflow-hidden rounded-[2rem] border border-line bg-[#f7f2fd] p-7 shadow-card sm:p-12 lg:p-16">
+            <div class="flex flex-col justify-between gap-10 lg:flex-row lg:items-start">
+              <div class="max-w-3xl">
+                <p class="section-kicker">03 / Keep exploring</p>
+                <h2 class="mt-7 font-display text-[clamp(2.8rem,6vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-mist">
+                  下一部电影？<br />
+                  <span class="text-accent">从片库开始。</span>
+                </h2>
+                <p class="mt-7 max-w-xl text-sm leading-7 text-muted sm:text-base">
+                  浏览完整片单，把感兴趣的影片加入想看，或把已经看过的故事收进自己的记录。
+                </p>
+              </div>
+              <div class="shrink-0 lg:pt-2">
+                <span class="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent/[0.06] px-4 py-2 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-accent">
+                  <span class="status-dot" aria-hidden="true"></span>
+                  Library updated
+                </span>
+              </div>
+            </div>
+
+            <div class="mt-12 flex flex-col gap-3 border-t border-line pt-8 sm:flex-row sm:items-center">
+              <a class="contact-email group" href="./library.html">
+                <span>进入完整片库</span>
+                <svg class="size-5 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 18 18 6m-8 0h8v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <a class="copy-button" href="./favorites.html">查看我的收藏</a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap items-center justify-between gap-6">
+              <div class="flex flex-wrap gap-x-6 gap-y-3">
+                <span class="social-link">剧情</span>
+                <span class="social-link">科幻</span>
+                <span class="social-link">动画</span>
+                <span class="social-link">悬疑</span>
+              </div>
+              <p class="text-[0.62rem] uppercase tracking-[0.18em] text-[#8a7d98]">A quiet collection of stories</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-line">
+      <div class="mx-auto flex max-w-[1440px] flex-col gap-4 px-5 py-8 text-[0.65rem] uppercase tracking-[0.15em] text-[#827491] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
+        <p>© <span id="currentYear">2026</span> 哎哟蔚 · Film Library</p>
+        <a class="transition-colors hover:text-mist" href="#home">Back to top ↑</a>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">收藏状态已更新</div>
+    <script src="./assets/movies.js"></script>
+    <script src="./assets/daily-quote.js"></script>
+    <script src="./assets/characters.js"></script>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200" fill="none">
+  <defs><linearGradient id="g" x1="40" y1="0" x2="760" y2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="#70A6C1"/><stop offset=".48" stop-color="#365F75"/><stop offset="1" stop-color="#111E26"/></linearGradient></defs>
+  <rect width="800" height="1200" fill="url(#g)"/><rect x="160" y="298" width="480" height="390" rx="28" fill="#F2D77D" fill-opacity=".1" stroke="#F7F3DA" stroke-opacity=".17"/>
+  <path d="M231 590L400 344L569 590H231Z" fill="#E7C15D" fill-opacity=".12"/>
+  <text x="64" y="80" fill="#F5FAFC" fill-opacity=".66" font-family="Arial" font-size="15" letter-spacing="4">PLACEHOLDER POSTER</text>
+  <text x="64" y="1015" fill="#FFFAE8" font-family="Microsoft YaHei, sans-serif" font-size="70" font-weight="600">玩具总动员</text>
+  <text x="64" y="1080" fill="#FFFAE8" fill-opacity=".54" font-family="Arial" font-size="17" letter-spacing="3">1995 · ANIMATION</text>
+</svg>

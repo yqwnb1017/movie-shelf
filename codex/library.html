@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="哎哟蔚的电影片库，浏览电影并标记想看或已看过。" />
+    <meta name="theme-color" content="#eee9f8" />
+    <title>片库 · 哎哟蔚的电影收藏</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%23241b31%22/><text x=%2232%22 y=%2243%22 text-anchor=%22middle%22 fill=%22%23b8f39a%22 font-size=%2230%22>影</text></svg>"
+    />
+    <script src="./tailwind-browser.js"></script>
+    <script src="./assets/tailwind-theme.js"></script>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="./assets/library.css" />
+    <link rel="stylesheet" href="./assets/characters.css" />
+  </head>
+  <body class="min-h-screen overflow-x-hidden bg-ink font-sans text-mist antialiased">
+    <a class="skip-link" href="#library-content">跳至片库内容</a>
+    <div id="cursorGlow" class="cursor-glow" aria-hidden="true"></div>
+    <div class="character-layer" data-character-layer aria-hidden="true"></div>
+
+    <header id="siteHeader" class="fixed inset-x-0 top-0 z-40 transition-all duration-300">
+      <nav class="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="主导航">
+        <a href="./index.html" class="group flex items-center gap-3" aria-label="哎哟蔚的电影收藏，返回首页">
+          <span class="grid size-10 place-items-center rounded-full border border-line bg-panel text-sm font-bold text-accent transition-colors duration-300 group-hover:border-accent/40">
+            影
+          </span>
+          <span class="hidden text-xs font-semibold uppercase tracking-[0.24em] text-mist sm:block">哎哟蔚</span>
+        </a>
+
+        <div class="hidden items-center gap-1 rounded-full border border-line bg-white/30 p-1.5 backdrop-blur-xl md:flex">
+          <a class="nav-link" href="./index.html">首页</a>
+          <a class="nav-link is-active" href="./library.html" aria-current="page">片库</a>
+          <a class="nav-link" href="./favorites.html">我的收藏</a>
+        </div>
+
+        <a class="hidden items-center gap-2 text-xs font-medium text-muted transition-colors hover:text-mist md:flex" href="./favorites.html">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-profile-count>6 部影片 · 0 部已标记</span>
+        </a>
+
+        <button
+          id="menuToggle"
+          class="relative grid size-11 place-items-center rounded-full border border-line bg-panel/80 text-mist backdrop-blur-xl md:hidden"
+          type="button"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+          aria-label="打开导航菜单"
+        >
+          <span class="menu-line menu-line-top"></span>
+          <span class="menu-line menu-line-bottom"></span>
+        </button>
+      </nav>
+
+      <div
+        id="mobileMenu"
+        class="pointer-events-none mx-4 mt-1 translate-y-[-8px] rounded-3xl border border-line bg-panel/95 p-4 opacity-0 shadow-card backdrop-blur-2xl transition-all duration-300 md:hidden"
+      >
+        <div class="grid gap-1">
+          <a class="mobile-nav-link" href="./index.html">首页 <span>01</span></a>
+          <a class="mobile-nav-link" href="./library.html">片库 <span>02</span></a>
+          <a class="mobile-nav-link" href="./favorites.html">我的收藏 <span>03</span></a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section id="library" class="collection-hero">
+        <div class="collection-grid" aria-hidden="true"></div>
+        <div class="relative z-10 mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <div class="reveal max-w-4xl">
+            <p class="section-kicker">02 / Film library</p>
+            <h1 class="collection-title">片库</h1>
+            <p class="collection-intro">
+              一些想看、一些已经看过。先用最简单的标记，把每一次想看电影的念头留在这里。
+            </p>
+            <div class="collection-summary">
+              <div><strong data-stat-total>6</strong><span>收录影片</span></div>
+              <div><strong data-stat-want>0</strong><span>想看</span></div>
+              <div><strong data-stat-watched>0</strong><span>已看过</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="library-content" class="library-section">
+        <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <div class="library-heading reveal">
+            <h2>全部影片</h2>
+            <p>点击海报查看电影详情，或使用按钮标记想看与已看过。状态会保存在当前浏览器中。</p>
+          </div>
+          <div class="filter-bar reveal" aria-label="影片筛选">
+            <div class="filter-groups">
+              <div class="filter-group">
+                <span class="filter-label">年份</span>
+                <div class="filter-options" data-filter-options="year"></div>
+              </div>
+              <div class="filter-group">
+                <span class="filter-label">类型</span>
+                <div class="filter-options" data-filter-options="genre"></div>
+              </div>
+            </div>
+            <p class="filter-result" data-filter-result>当前显示 6 部</p>
+          </div>
+          <div class="movie-grid mt-8" data-all-movies></div>
+          <div class="empty-state mt-8" data-library-empty hidden>
+            当前筛选条件下没有电影，试试切换年份或类型。
+          </div>
+          <noscript>
+            <p class="empty-state mt-8">需要启用 JavaScript 才能浏览片库与保存收藏状态。</p>
+          </noscript>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-line">
+      <div class="mx-auto flex max-w-[1440px] flex-col gap-4 px-5 py-8 text-[0.65rem] uppercase tracking-[0.15em] text-[#827491] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
+        <p>© <span id="currentYear">2026</span> 哎哟蔚 · Film Library</p>
+        <a class="transition-colors hover:text-mist" href="./index.html">返回首页 ↑</a>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">收藏状态已更新</div>
+    <script src="./assets/movies.js"></script>
+    <script src="./assets/characters.js"></script>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>

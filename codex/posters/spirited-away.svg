@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200" fill="none">
+  <defs><linearGradient id="g" x1="40" y1="0" x2="760" y2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="#5F8D87"/><stop offset=".48" stop-color="#2D514D"/><stop offset="1" stop-color="#101A18"/></linearGradient></defs>
+  <rect width="800" height="1200" fill="url(#g)"/><rect x="190" y="280" width="420" height="490" rx="210" fill="#D98566" fill-opacity=".1" stroke="#EAD9CD" stroke-opacity=".16"/>
+  <path d="M300 720L400 340L500 720" stroke="#EAD9CD" stroke-opacity=".12"/>
+  <circle cx="570" cy="390" r="82" fill="#E8B277" fill-opacity=".13"/>
+  <text x="64" y="80" fill="#F1F5F1" fill-opacity=".64" font-family="Arial" font-size="15" letter-spacing="4">PLACEHOLDER POSTER</text>
+  <text x="64" y="1015" fill="#F6F4ED" font-family="Microsoft YaHei, sans-serif" font-size="82" font-weight="600">千与千寻</text>
+  <text x="64" y="1080" fill="#F6F4ED" fill-opacity=".52" font-family="Arial" font-size="17" letter-spacing="3">2001 · ANIMATION</text>
+</svg>
